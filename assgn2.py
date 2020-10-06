@@ -167,15 +167,15 @@ class Linear_Regression:
         pass   
     
     def fit(self, X, Y, learning_rate=0.01, epochs=1000, tol=None, regularizer=None,lambd=0.0,**kwargs):
-        epch_counter = 0
+        epoch_counter = 0
         m,n = X.shape
         self.theta = np.zeros(n) # Initialize theta to be 0 of size n
         if(tol != None):
             self.error = -tol
         else:
             self.error = -1e5
-        while epch_counter < epochs:
-            epch_counter += 1 #count the epochs
+        while epoch_counter < epochs:
+            epoch_counter += 1 #count the epochs
             theta = self.theta
             error = self.error
             
@@ -192,7 +192,7 @@ class Linear_Regression:
                 
                 if np.abs(self.error - error) < tol:
                     break
-        #print(f'Epochs needed: {epch_counter}')
+        #print(f'Epochs needed: {epoch_counter}')
                                   
     def predict(self,X):
         return X @ self.theta
@@ -208,12 +208,12 @@ class SGD:
         pass   
     
     def fit(self, X, Y, learning_rate=0.01, epochs=1000, tol=None, regularizer=None,lambd=0.0,**kwargs):
-        epch_counter = 0
+        epoch_counter = 0
         m,n = X.shape
         self.theta = np.zeros(n) # Initialize theta to be 0 of size n
         self.error = -tol
-        while epch_counter < epochs:
-            epch_counter += 1 #count the epochs
+        while epoch_counter < epochs:
+            epoch_counter += 1 #count the epochs
             for i in range(m):
                 learning_rate = learning_schedule(epochs * m + i)
                 theta = self.theta
@@ -229,7 +229,7 @@ class SGD:
                 
                 if np.abs(self.error - error) < tol:
                     break
-        #print(f'Epochs needed: {epch_counter}')
+        #print(f'Epochs needed: {epoch_counter}')
                                   
     def predict(self,X):
         return X @ self.theta
